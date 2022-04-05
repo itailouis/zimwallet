@@ -1,6 +1,7 @@
 from flask import Flask
 from src.auth import auth
 from src.database import db
+from src.controllers.ussdentry import ussdentry
 import os
 
 
@@ -16,5 +17,6 @@ def create_app(test_config=None):
         app.config.from_mapping(test_config)
     db.app = app
     db.init_app(app)
+    app.register_blueprint(ussdentry)
     app.register_blueprint(auth)
     return app
